@@ -15,6 +15,7 @@ class Robot: public SampleRobot
 	RobotDrive myRobot; // robot drive system
 	Joystick stick; // only joystick
 
+
 public:
 	Robot() :
 			myRobot(1, 2),	// initialize the RobotDrive to use motor controllers on ports 1 and 2. It is very important that you choose the right ports
@@ -22,18 +23,41 @@ public:
 	{
 		myRobot.SetExpiration(0.1);
 	}
+private:
+		void RobotInit()
+		{
 
-	/**
-	 * Runs the motors with arcade steering.
-	 */
-	void OperatorControl()
-	{
-		while (IsOperatorControl() && IsEnabled())
+		}
+
+		void AutonomousInit()
+		{
+
+		}
+
+		void AutonomousPeriodic()
+		{
+
+		}
+
+		void TeleopInit()
+		{
+
+		}
+
+		void TeleopPeriodic()
 		{
 			myRobot.ArcadeDrive(stick); // drive with arcade style (use right stick)
-			Wait(0.005);				// wait for a motor update time
+			if(stick.GetRawButton(1)) {
+				myRobot.Drive(7.0,0.0);
+			} else {
+				myRobot.StopMotor();
+			}
 		}
-	}
+
+		void TestPeriodic()
+		{
+
+		}
 
 };
 
